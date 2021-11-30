@@ -1,10 +1,11 @@
 # - *-  coding: utf- 8 - *-
 from argparse import ArgumentParser, RawTextHelpFormatter
-import ConfigParser
+import configparser
 import collections
 from collections import deque
 import os
 import shutil
+
 # Windows
 if os.name == 'nt':
     import win32api
@@ -36,8 +37,8 @@ begins.
 After trigger or when program is stopped, the data file will be compressed and 
 stored to a path, that can also be specified in the config file.         
 ''')
-    parser.add_argument("-c", "--config", type = str, nargs = 1, default = "aqserver.cfg",
-                        help="specify name of configfile, defaults to aqserver.cfg")
+    parser.add_argument("-c", "--config", type = str, nargs = 1,
+                        help="specify name of configfile, defaults to aqserver.cfg or aqserver.json")
     args = parser.parse_args()
     cfg = args.config
     # print cfg
@@ -49,8 +50,7 @@ def get_config(cfgfile):
     # read configuration from file
     ###############################################################################
     """
-#    config = ConfigParser.RawConfigParser()
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.optionxform=str
     config.read(cfgfile)
 
@@ -74,7 +74,9 @@ def get_config(cfgfile):
     trigger = collections.OrderedDict(triggers)
     dbg = collections.OrderedDict(debug)
     
-    return aqdata, com, misc, value, trigger, dbg
+    con =  collections.OrderedDict(acquisition + communication + miscellaneous + values + triggers + debug )
+    
+    return aqdata, com, misc, value, trigger, dbg, con
  
 def fileCopyTrgLines(infile, outfile, numlines):
     """

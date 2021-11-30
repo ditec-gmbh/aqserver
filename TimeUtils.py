@@ -99,7 +99,7 @@ class Timer:
             Essentially just a "lap" timer. Does not modify or clear the
             running time. Updates the local attributes tcurr and tlast.
         """
-        self.tcurr = time.clock()
+        self.tcurr = time.perf_counter()
         delta = self.tcurr - self.tlast
         self.tlast = self.tcurr
         return delta
@@ -108,7 +108,7 @@ class Timer:
     def GetTotal(self):
         """ Returms time since timer object created.
         """
-        return time.clock() - self.tstart
+        return time.perf_counter() - self.tstart
 
 
     def Reset(self):
@@ -117,5 +117,5 @@ class Timer:
             Sets local data atributes tstart and tlast to the current
             system time.
         """
-        self.tstart = time.clock()
+        self.tstart = time.perf_counter()
         self.tlast = self.tstart

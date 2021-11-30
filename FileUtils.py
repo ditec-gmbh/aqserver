@@ -87,9 +87,9 @@ class ASCIIDataWrite:
 
 			try:
 				self.file_ref = open(file_path, fmode)
-			except Exception, e:
+			except Exception as e:
 				rc = RC.OPEN_ERR
-				print "%s" % str(e)
+				print("%s" % str(e))
 			
 		else:
 			rc = RC.NO_NAME
@@ -125,9 +125,9 @@ class ASCIIDataWrite:
 			try:
 				# use gzip for compressed file
 				self.file_ref = gzip.GzipFile(file_path, fmode)
-			except Exception, e:
+			except Exception as e:
 				rc = RC.OPEN_ERR
-				print "%s" % str(e)
+				print("%s" % str(e))
 		
 		else:
 			rc = RC.NO_NAME
@@ -163,9 +163,9 @@ class ASCIIDataWrite:
 			try:
 				# use gzip for compressed file
 				self.file_ref = bz2.BZ2File(file_path, fmode)
-			except Exception, e:
+			except Exception as e:
 				rc = RC.OPEN_ERR
-				print "%s" % str(e)
+				print("%s" % str(e))
 		
 		else:
 			rc = RC.NO_NAME
@@ -222,18 +222,18 @@ class ASCIIDataWrite:
 		if rc == RC.NO_ERR:
 			try:
 				dstr = " %f" % float(dataval)
-			except Exception, e:
+			except Exception as e:
 				rc = RC.INV_DATA
-				print "%s" % str(e)
+				print("%s" % str(e))
 
 			if rc == RC.NO_ERR:
 				outstr = hdr + dstr + "\n"
 	
 				try:
 					self.file_ref.write(outstr)
-				except Exception, e:
+				except Exception as e:
 					rc = RC.WRITE_ERR
-					print "%s" % str(e)
+					print("%s" % str(e))
 	
 		return rc
 
@@ -274,18 +274,18 @@ class ASCIIDataWrite:
 		if rc == RC.NO_ERR:
 			try:
 				dstr = "%s" % datastr
-			except Exception, e:
+			except Exception as e:
 				rc = RC.INV_DATA
-				print "%s" % str(e)
+				print("%s" % str(e))
 
 			if rc == RC.NO_ERR:
 				outstr = hdr + dstr + "\n"
 	
 				try:
 					self.file_ref.write(outstr)
-				except Exception, e:
+				except Exception as e:
 					rc = RC.WRITE_ERR
-					print "%s" % str(e)
+					print("%s" % str(e))
 	
 		return rc
 
@@ -325,9 +325,9 @@ class BinDataWrite:
 
 			try:
 				self.file_ref = open(file_path, fmode)
-			except Exception, e:
+			except Exception as e:
 				rc = RC.OPEN_ERR
-				print "%s" % str(e)
+				print ("%s" % str(e))
 			
 		else:
 			rc = RC.NO_NAME
@@ -363,9 +363,9 @@ class BinDataWrite:
 			try:
 				# use gzip for compressed file
 				self.file_ref = gzip.GzipFile(file_path, fmode)
-			except Exception, e:
+			except Exception as e:
 				rc = RC.OPEN_ERR
-				print "%s" % str(e)
+				print ("%s" % str(e))
 		
 		else:
 			rc = RC.NO_NAME
@@ -401,9 +401,9 @@ class BinDataWrite:
 			try:
 				# use gzip for compressed file
 				self.file_ref = bz2.BZ2File(file_path, fmode)
-			except Exception, e:
+			except Exception as e:
 				rc = RC.OPEN_ERR
-				print "%s" % str(e)
+				print ("%s" % str(e))
 		
 		else:
 			rc = RC.NO_NAME
@@ -463,9 +463,9 @@ class BinDataWrite:
 		if rc == RC.NO_ERR:
 			try:
 				dstr = "%s" % datastr
-			except Exception, e:
+			except Exception as e:
 				rc = RC.INV_DATA
-				print "%s" % str(e)
+				print ("%s" % str(e))
 
 			if rc == RC.NO_ERR:
 				outstr = hdr + dstr + "\n"
@@ -474,9 +474,9 @@ class BinDataWrite:
 				srec = struct.pack(recstr, outstr)	
 				try:
 					self.file_ref.write(srec)
-				except Exception, e:
+				except Exception as e:
 					rc = RC.WRITE_ERR
-					print "%s" % str(e)
+					print ("%s" % str(e))
 	
 		return rc
 
@@ -507,7 +507,7 @@ class ASCIIDataRead:
 
 		try:
 			self.file_ref = open(file_path, "r")
-		except Exception, e:
+		except Exception as e:
 			rc = RC.OPEN_ERR
 			self.file_ref = None
 
@@ -549,7 +549,7 @@ class ASCIIDataRead:
 			# fetch a line from the file
 			try:
 				record = self.file_ref.readline()
-			except Exception, e:
+			except Exception as e:
 				record = ""
 				rc = RC.READ_ERR
 		else:
@@ -604,8 +604,8 @@ class ASCIIDataRead:
 						retflds.append(float(readflds[0]))
 					else:
 						rc = RC.INV_FORMAT
-				except Exception, e:
-					print str(e)
+				except Exception as e:
+					print( str(e) )
 					retflds = []
 					rc = RC.INV_DATA
 			else:
@@ -654,9 +654,9 @@ def closeFile(file_id):
 
 	try:
 		file_id.close()
-	except Exception, e:
+	except Exception as e:
 		rc = RC.INV_FILE
-		print "%s" % str(e)
+		print ("%s" % str(e))
 
 	return rc
 
@@ -690,25 +690,25 @@ if __name__ == "__main__":
 
 	fin.openInput("./","futest.dat")
 
-	print "Read Records"
-	print "%d %s" % fin.readDataRecord(),
-	print "%d %s" % fin.readDataRecord(),
-	print "%d %s" % fin.readDataRecord(),
-	print "%d %s" % fin.readDataRecord(),
-	print "%d %s" % fin.readDataRecord(),
-	print "%d %s" % fin.readDataRecord(),
+	print ("Read Records")
+	print ("%d %s" % fin.readDataRecord())
+	print ("%d %s" % fin.readDataRecord())
+	print ("%d %s" % fin.readDataRecord())
+	print ("%d %s" % fin.readDataRecord())
+	print ("%d %s" % fin.readDataRecord())
+	print ("%d %s" % fin.readDataRecord())
 
 	fin.closeInput()
 
 	fin.openInput("./","futest.dat")
 
-	print "Read Fields"
-	print "%d %s" % fin.readDataFields()
-	print "%d %s" % fin.readDataFields()
-	print "%d %s" % fin.readDataFields()
-	print "%d %s" % fin.readDataFields()
-	print "%d %s" % fin.readDataFields()
-	print "%d %s" % fin.readDataFields()
+	print ("Read Fields")
+	print ("%d %s" % fin.readDataFields())
+	print ("%d %s" % fin.readDataFields())
+	print ("%d %s" % fin.readDataFields())
+	print ("%d %s" % fin.readDataFields())
+	print ("%d %s" % fin.readDataFields())
+	print ("%d %s" % fin.readDataFields())
 
 	fin.closeInput()
 	

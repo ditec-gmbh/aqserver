@@ -1,0 +1,48 @@
+{
+    "aqdata": {
+        "place": "somewhere",
+        "creator": "Franz Hefekranz",
+        "machine": "mean machine",
+        "order": "just do it or number 1234",
+        "remarks": [ "mean machine", "investigating malfunction", "production babysitting" ]
+    },
+
+    "communication": {
+        "demo": 1,
+        "ip": "192.168.1.47",
+        "rack": 0,
+        "slot": 0,
+        "maxattempts": 3
+    },
+
+    "misc": {
+        "delimiter": ";",
+        "datafileprefix": "ProjectName",
+        "datafile": "RecentProjectData",
+        "autostart": 1,
+        "datapath": "C:/Users/USER/Documents/Aqserver/data",
+        "usedir": 1,
+        "scantime": 0,
+        "maxrecords": 1000,
+        "booloffset": 0
+    },
+
+    "trigger": {
+        "trgsignal": 0,
+        "trgcondition": "!=",
+        "trgvalue": 0,
+        "pretrg": 30,
+        "posttrg": 30
+    },
+
+    "debug": {
+        "dbglevel": 1,
+        "logfile": "LogFile",
+        "logts": 1
+    },
+
+    "values": [
+        { "len": [ "MW4", 1, 0, "m" ] },
+        { "74_YI_PV": [ "DB4147.DD1248", 0, 646.6852, "Angström/Woche" ] }
+    ]
+}
